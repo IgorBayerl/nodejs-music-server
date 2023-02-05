@@ -61,6 +61,24 @@ app.get('/music/info', async (req, res) => {
 })
 
 
+// This will get one music from the playlist mock
+app.get('/music/random_song', async (req, res) => {
+  
+  const response = {}
+  try {
+    const playlist = playlist_mock
+
+    const index = Math.floor(Math.random() * playlist.length)
+    const musicInfo = playlist[index]
+    res.json(musicInfo)
+    
+  } catch (error) {
+    response.message = error.message
+    res.json(response).status(500)
+  }
+})
+
+
 app.get('/search', async (req, res) => {
   const response = {};
   try {
